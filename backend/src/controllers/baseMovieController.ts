@@ -4,14 +4,14 @@ import { BaseMovieService } from "../services/baseMovieService";
 export abstract class BaseMovieController {
   constructor(protected readonly movieService: BaseMovieService) {}
 
-  // async getAll(req: Request, res: Response) {
-  //   try {
-  //     const movies = await this.movieService.getAllMovies();
-  //     res.json(movies);
-  //   } catch (error) {
-  //     this.handleError(res, error);
-  //   }
-  // }
+  async getAllMovies(req: Request, res: Response) {
+    try {
+      const movies = await this.movieService.getAllMovies();
+      res.json(movies);
+    } catch (error) {
+      this.handleError(res, error);
+    }
+  }
 
   private handleError(res: Response, error: any) {
     if (error.message === "DATA_NOT_FOUND") {
@@ -29,25 +29,6 @@ export abstract class BaseMovieController {
       });
     }
   }
-
-  // async getAll(req: Request, res: Response) {
-  //   try {
-  //     const page = Math.max(1, parseInt(req.query.page as string) || 1);
-  //     const limit = 3;
-
-  //     const result = await this.movieService.getPaginatedMovies(page, limit);
-  //     res.json({
-  //       data: result.movies,
-  //       pagination: {
-  //         currentPage: result.currentPage,
-  //         totalPages: result.totalPages,
-  //         totalMovies: result.totalMovies,
-  //       },
-  //     });
-  //   } catch (error) {
-  //     this.handleError(res, error);
-  //   }
-  // }
 
   async getAll(req: Request, res: Response) {
     try {
@@ -126,6 +107,7 @@ export abstract class BaseMovieController {
     controller: BaseMovieController,
     middleware: RequestHandler[] = []
   ) {
+    router.get(`${path}/all`, controller.getAllMovies.bind(controller));
     router.get(path, controller.getAll.bind(controller));
     router.get(`${path}/:id`, controller.getById.bind(controller));
     router.post(path, ...middleware, controller.create.bind(controller));

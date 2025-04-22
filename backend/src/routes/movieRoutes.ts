@@ -21,19 +21,22 @@ BaseMovieController.registerRoutes(
 BaseMovieController.registerRoutes(
   router,
   "/hindi-movies",
-  new HindiMovieController()
+  new HindiMovieController(),
+  [adminAuth]
 );
 
 BaseMovieController.registerRoutes(
   router,
   "/bangla-movies",
-  new BanglaMovieController()
+  new BanglaMovieController(),
+  [adminAuth]
 );
 
 BaseMovieController.registerRoutes(
   router,
   "/other-movies",
-  new OtherMovieController()
+  new OtherMovieController(),
+  [adminAuth]
 );
 
 export default router;

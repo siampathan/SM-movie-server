@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+* {
+  font-family: "Outfit", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Top section */
+.top-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.divied {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+
+  top: 10vh;
+}
+
+/* Top Bar*/
+.top-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Side bar style*/
+.sidebar-wrap {
+  border-right: 1px solid black;
+  height: 100vh;
+}
+
+.sidebar-wrap ul {
+  padding: 20px;
+  list-style: none;
+}
+
+.sidebar-wrap li {
+  padding: 10px;
+  font-size: 18px;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-wrap li:hover {
+  font-size: 20px;
+  transition: 0.5s ease-in-out;
+}
+
+/* search filter*/
+.filter {
+  max-width: 350px;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding-right: 10px;
+  border: 1px solid #ada5a5;
+}
+
+.filter input {
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  font-size: 14px;
+}
+
+.filter input:focus-visible {
+  border: none;
+}
+
+/* Home section*/
+.home-wrap {
+  max-width: 60rem;
+  height: 80vh;
+  margin: 20px 60px;
+  padding: 20px 40px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 30vh;
+  padding: 20px;
+  background-color: rgb(160, 159, 154);
+  color: #fff;
+  border-radius: 8px;
+}
+
+/*Movie List Style */
+.movies-wrap {
+  margin-top: 10px;
+  padding: 0 60px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.movies-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.movies-table,
+td,
+th {
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+.movie-poster img {
+  max-width: 100px;
+  height: 15vh;
+  object-fit: cover;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+  gap: 20px;
+  border: none;
+}
+
+.movies-table > .icon {
+  padding-bottom: 20px;
+}
+
+.movies-table th,
+tr {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #ada5a5;
+  color: white;
+  text-align: center;
+}
+
+.movies-table svg {
+  cursor: pointer;
+}
+
+.movies-table tr:nth-child(even) {
+  background-color: #4e4d4d;
+}
+
+.movies-table tr:hover {
+  background-color: #8a8989;
+}
+
+/* Pagination section */
+.pagination {
+  max-width: 300px;
+  height: 8vh;
+  display: flex;
+  gap: 10px;
+  justify-content: left;
+}
+
+.pagination button {
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(160, 158, 158);
+  padding: 15px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.pagination span {
+  padding-top: 15px;
+}
+
+/* Add Movie*/
+.add-wrap {
+  margin: 10px 20px;
+  max-width: 300px;
+}
+
+.form-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 350px;
+}
+
+.form-wrap p {
+  font-size: 25px;
+  padding-bottom: 10px;
+}
+
+.form-wrap input {
+  max-width: 300px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid grey;
+  outline: none;
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+/*movie details section */
+.movie-details {
+  max-width: 500px;
+  padding: 20px;
+}
+
+.data-wrap {
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.poster-wrap {
+  max-width: 350px;
+  height: 70vh;
+  padding: 15px 0;
+}
+
+.poster-wrap img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.trailer-wrap {
+  max-width: 150px;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 15px;
+}
+
+/* Side bar mediaquery*/
+@media (max-width: 450px) {
+  .sidebar-wrap {
+    background-color: #ada5a5;
+  }
+
+  .sidebar-wrap ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-indent: -9999px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .sidebar-wrap ul li svg {
+    display: inline-block;
+    font-size: 1.3rem;
+    color: #fff;
+    position: relative;
+    text-indent: 0;
+  }
+}
+
+@media (max-width: 1164px) {
+  .data-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .trailer-wrap {
+    margin-right: 10rem;
+  }
+}
