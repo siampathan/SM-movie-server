@@ -6,7 +6,7 @@ interface MovieProps {
 
 const UpdateOtherMovie: React.FC<MovieProps> = ({ token }) => {
   return (
-    <UpdateMovie token={token} movieType="Hindi" redirectPath="other-movies" />
+    <UpdateMovie token={token} movieType="Other" redirectPath="other-movies" />
   );
 };
 

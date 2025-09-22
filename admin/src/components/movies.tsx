@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { LogoutButton } from "../assets/style/style";
 import MovieList from "./movieList";
+import { FilterContainer, Input } from "../assets/style/style";
 
 interface MoviesComponentProps {
   backendUrl: string;
@@ -47,9 +48,8 @@ const MoviesComponent = ({
           <Link to={addMoviePath}>
             <LogoutButton> Add Movie </LogoutButton>
           </Link>
-
-          <div className="filter">
-            <input
+          <FilterContainer>
+            <Input
               type="text"
               placeholder="Enter Movie Name"
               value={searchField}
@@ -60,7 +60,7 @@ const MoviesComponent = ({
               onClick={handleSearchClick}
               style={{ cursor: "pointer" }}
             />
-          </div>
+          </FilterContainer>
         </div>
         <span>
           Total {totalMovies} {pageTitle}

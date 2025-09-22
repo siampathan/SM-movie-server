@@ -15,8 +15,8 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-app.use("/api", movieRouter);
-app.use("/api", adminRouter);
+ app.use("/api", movieRouter);
+ app.use("/api", adminRouter);
 
 app.listen(PORT, () => {
   console.log(`server runing at, ${PORT}`);

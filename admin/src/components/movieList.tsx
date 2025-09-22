@@ -13,7 +13,7 @@ interface MovieTypes {
   id: string;
   title: string;
   poster_link: string;
-  rating: number;
+  rating: string;
 }
 
 interface MovieListProps {
@@ -124,7 +124,7 @@ const MovieList = ({
               <th>ID</th>
               <th>Title</th>
               <th>Cover</th>
-              <th>Rating</th>
+              <th>Duration</th>
               <th>Action</th>
             </tr>
           </thead>

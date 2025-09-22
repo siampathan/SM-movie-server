@@ -1,4 +1,9 @@
-import { LogoutButton } from "../assets/style/style";
+import {
+  AddWrap,
+  FormWrap,
+  LogoutButton,
+  StyledInput,
+} from "../assets/style/style";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -20,6 +25,7 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
   const [values, setValues] = useState({
     title: "",
     rating: "",
+    genre: "",
     poster_link: "",
     trailer_link: "",
     movie_link: "",
@@ -38,7 +44,7 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
         const movieData = response.data;
         setValues({
           ...movieData,
-          rating: movieData.rating.toString(),
+          rating: movieData.rating,
         });
       } catch (err) {
         console.error("Failed to fetch movie:", err);
@@ -54,7 +60,7 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
 
     const payload = {
       ...values,
-      rating: Number(values.rating),
+      rating: values.rating,
     };
 
     try {
@@ -66,6 +72,7 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
       });
 
       navigate(`/${redirectPath}`);
+      console.log(values);
     } catch (err: any) {
       console.error(err);
       setError("Failed to update movie. Please try again.");
@@ -73,12 +80,12 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
   };
 
   return (
-    <div className="add-wrap">
-      <form className="form-wrap" onSubmit={handleSubmit}>
+    <AddWrap>
+      <FormWrap onSubmit={handleSubmit}>
         <p>Update {movieType} Movie Info</p>
         {error && <div className="error-message">{error}</div>}
 
-        <input
+        <StyledInput
           type="text"
           className="input-field"
           placeholder="Enter Movie Title"
@@ -87,18 +94,25 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
           onChange={(e) => setValues({ ...values, title: e.target.value })}
           required
         />
-        <input
+        <StyledInput
           type="text"
           className="input-field"
-          placeholder="Enter Rating (1-10)"
+          placeholder="Enter Duration"
           name="rating"
           value={values.rating}
           onChange={(e) => setValues({ ...values, rating: e.target.value })}
-          min="1"
-          max="10"
           required
         />
-        <input
+        <StyledInput
+          type="text"
+          className="input-field"
+          placeholder="Enter Category"
+          name="genre"
+          value={values.genre}
+          onChange={(e) => setValues({ ...values, genre: e.target.value })}
+          required
+        />
+        <StyledInput
           type="text"
           className="input-field"
           placeholder="Enter Poster Link"
@@ -109,7 +123,7 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
           }
           required
         />
-        <input
+        <StyledInput
           type="text"
           className="input-field"
           placeholder="Enter Trailer Link"
@@ -119,7 +133,7 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
             setValues({ ...values, trailer_link: e.target.value })
           }
         />
-        <input
+        <StyledInput
           type="text"
           className="input-field"
           placeholder="Enter Movie Link"
@@ -130,8 +144,8 @@ const UpdateMovie: React.FC<MovieUpdateProps> = ({
         />
 
         <LogoutButton type="submit">Update</LogoutButton>
-      </form>
-    </div>
+      </FormWrap>
+    </AddWrap>
   );
 };
 

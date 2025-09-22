@@ -1,10 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogoutButton } from "../assets/style/style";
+import {
+  LogoutButton,
+  AddWrap,
+  FormWrap,
+  FormTitle,
+  ErrorMessage,
+  SuccessMessage,
+  StyledInput,
+} from "../assets/style/style";
 
 interface MovieFormData {
   title: string;
   rating: string;
+  genre: string;
   poster_link: string;
   trailer_link: string;
   movie_link: string;
@@ -24,6 +33,7 @@ const AddMovie = ({
   const [formData, setFormData] = useState<MovieFormData>({
     title: "",
     rating: "",
+    genre: "",
     poster_link: "",
     trailer_link: "",
     movie_link: "",
@@ -46,6 +56,7 @@ const AddMovie = ({
     if (
       !formData.title ||
       !formData.rating ||
+      !formData.genre ||
       !formData.poster_link ||
       !formData.movie_link
     ) {
@@ -62,6 +73,7 @@ const AddMovie = ({
       setFormData({
         title: "",
         rating: "",
+        genre: "",
         poster_link: "",
         trailer_link: "",
         movie_link: "",
@@ -80,52 +92,53 @@ const AddMovie = ({
   };
 
   return (
-    <div className="add-wrap">
-      <form className="form-wrap" onSubmit={handleSubmit}>
-        {error && <div className="error">{error}</div>}
-        {success && <div className="success">{success}</div>}
-        <p>{pageTitle}</p>
+    <AddWrap>
+      <FormWrap onSubmit={handleSubmit}>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {success && <SuccessMessage>{success}</SuccessMessage>}
+        <FormTitle>{pageTitle}</FormTitle>
 
-        <input
+        <StyledInput
           type="text"
-          className="input-field"
           placeholder="Enter Movie Title"
           name="title"
           value={formData.title}
           onChange={handleChange}
           required
         />
-        <input
+        <StyledInput
           type="text"
-          className="input-field"
-          placeholder="Enter Rating (1-10)"
+          placeholder="Enter Duration"
           name="rating"
           value={formData.rating}
           onChange={handleChange}
-          min="1"
-          max="10"
           required
         />
-        <input
+        <StyledInput
           type="text"
-          className="input-field"
+          placeholder="Enter Category"
+          name="genre"
+          value={formData.genre}
+          onChange={handleChange}
+          required
+        />
+        <StyledInput
+          type="text"
           placeholder="Enter Poster Link"
           name="poster_link"
           value={formData.poster_link}
           onChange={handleChange}
           required
         />
-        <input
+        <StyledInput
           type="text"
-          className="input-field"
           placeholder="Enter Trailer Link"
           name="trailer_link"
           value={formData.trailer_link}
           onChange={handleChange}
         />
-        <input
+        <StyledInput
           type="text"
-          className="input-field"
           placeholder="Enter Movie Link"
           name="movie_link"
           value={formData.movie_link}
@@ -136,8 +149,8 @@ const AddMovie = ({
         <LogoutButton type="submit">
           {isLoading ? "Submitting..." : "POST Movie"}
         </LogoutButton>
-      </form>
-    </div>
+      </FormWrap>
+    </AddWrap>
   );
 };
 

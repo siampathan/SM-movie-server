@@ -12,7 +12,6 @@ interface MovieProps {
 }
 
 const MovieDetails: React.FC<MovieProps> = ({ movieType, redirectPath }) => {
-  console.log("Props - ", movieType, redirectPath);
 
   const { width } = UseWindowSize();
 
@@ -32,10 +31,12 @@ const MovieDetails: React.FC<MovieProps> = ({ movieType, redirectPath }) => {
   const [value, setValues] = useState({
     title: "",
     rating: "",
+    genre: "",
     poster_link: "",
     trailer_link: "",
     movie_link: "",
   });
+
   const [error, setError] = useState<string | null>(null);
 
   const { id } = useParams();
@@ -47,9 +48,9 @@ const MovieDetails: React.FC<MovieProps> = ({ movieType, redirectPath }) => {
           `${backendUrl}/api/${redirectPath}/${id}`
         );
         const movieData = response.data;
+        
         setValues({
           ...movieData,
-          rating: movieData.rating.toString(),
         });
       } catch (err) {
         console.error("Failed to fetch movie:", err);
@@ -59,9 +60,11 @@ const MovieDetails: React.FC<MovieProps> = ({ movieType, redirectPath }) => {
 
     fetchMovie();
   }, [id, redirectPath]);
+
   return (
     <div className="movie-details">
       {error && <div className="error-message">{error}</div>}
+
       <h1> {movieType} Movie Details </h1>
 
       <div className="data-wrap">
@@ -81,7 +84,8 @@ const MovieDetails: React.FC<MovieProps> = ({ movieType, redirectPath }) => {
 
       <div className="content">
         <h2> {value.title} </h2>
-        <h3> Rating: {value.rating} </h3>
+        <h3> Duration: {value.rating} </h3>
+        <h3>{value.genre}</h3>
       </div>
 
       <StyledNavLink to={value.movie_link}>

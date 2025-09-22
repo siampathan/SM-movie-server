@@ -1,3 +1,9 @@
+import {
+  PaginationContainer,
+  PaginationButton,
+  PageIndicator,
+} from "../assets/style/style";
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -33,41 +39,28 @@ const Pagination: React.FC<PaginationProps> = ({
     }
   };
   return (
-    <div className="pagination">
-      <button
-        className="pagination-button"
-        onClick={goFirst}
-        disabled={currentPage === 1}
-      >
+    <PaginationContainer>
+      <PaginationButton onClick={goFirst} disabled={currentPage === 1}>
         {"<"}
-      </button>
-      <button
-        className="pagination-button"
-        onClick={handlePrevious}
-        disabled={currentPage === 1}
-      >
+      </PaginationButton>
+      <PaginationButton onClick={handlePrevious} disabled={currentPage === 1}>
         -
-      </button>
+      </PaginationButton>
 
-      <span className="page-indicator">
+      <PageIndicator>
         Page {currentPage} of {totalPages}
-      </span>
+      </PageIndicator>
 
-      <button
-        className="pagination-button"
+      <PaginationButton
         onClick={handleNext}
         disabled={currentPage >= totalPages}
       >
         +
-      </button>
-      <button
-        className="pagination-button"
-        onClick={goLast}
-        disabled={currentPage === totalPages}
-      >
+      </PaginationButton>
+      <PaginationButton onClick={goLast} disabled={currentPage === totalPages}>
         {">"}
-      </button>
-    </div>
+      </PaginationButton>
+    </PaginationContainer>
   );
 };
 

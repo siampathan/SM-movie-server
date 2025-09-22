@@ -1,38 +1,43 @@
-import { StyledNavLink } from "../assets/style/style";
+import {
+  StyledNavLink,
+  SidebarWrap,
+  SidebarList,
+  SidebarItem,
+} from "../assets/style/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 
 const SideBar = () => {
   return (
-    <div className="sidebar-wrap">
-      <ul>
+    <SidebarWrap>
+      <SidebarList>
         <StyledNavLink to="/english-movies">
-          <li>
+          <SidebarItem>
             <FontAwesomeIcon icon={faFilm} />
             ENGLISH Movies
-          </li>
+          </SidebarItem>
         </StyledNavLink>
 
         <StyledNavLink to="/bangla-movies">
-          <li>
+          <SidebarItem>
             <FontAwesomeIcon icon={faFilm} />
             BNGLA Movies
-          </li>
+          </SidebarItem>
         </StyledNavLink>
         <StyledNavLink to="/hindi-movies">
-          <li>
+          <SidebarItem>
             <FontAwesomeIcon icon={faFilm} />
             HINDI Movies
-          </li>
+          </SidebarItem>
         </StyledNavLink>
-        <StyledNavLink to="/others-movies">
-          <li>
+        <StyledNavLink to="/other-movies">
+          <SidebarItem>
             <FontAwesomeIcon icon={faFilm} />
             OTHERS Movies
-          </li>
+          </SidebarItem>
         </StyledNavLink>
-      </ul>
-    </div>
+      </SidebarList>
+    </SidebarWrap>
   );
 };
 

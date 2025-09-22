@@ -16,13 +16,13 @@ import AddHindiMovie from "./pages/addHindimovie";
 import AddOtherMovie from "./pages/addOthersmovie";
 import UpdateEnglishMovie from "./pages/updateEnglishmovie";
 import UpdateBanglaMovie from "./pages/updateBanglamovie";
-import "./App.css";
 import EnglishMovieDetails from "./pages/englishMovieDetails";
 import BanglaMovieDetails from "./pages/banglaMovieDetails";
 import HindiMovieDetails from "./pages/hindiMovieDetails";
 import OtherMovieDetails from "./pages/othersMovieDetails";
 import UpdateHindiMovie from "./pages/updateHindimovie";
 import UpdateOtherMovie from "./pages/updateOthermovie";
+import "./App.css";
 
 export const backendUrl = import.meta.env.VITE_API_URL;
 
@@ -45,7 +45,7 @@ function App() {
           <div className="divied">
             <SideBar />
             <Routes>
-              <Route path="/" element={<Home token={token} />} />
+              <Route path="/" element={<Home token={token} length={0} />} />
               <Route
                 path="/english-movies"
                 element={<EnglishMovies token={token} />}
@@ -59,7 +59,7 @@ function App() {
                 element={<HindiMovies token={token} />}
               />
               <Route
-                path="/others-movies"
+                path="/other-movies"
                 element={<OtherMovies token={token} />}
               />
               <Route

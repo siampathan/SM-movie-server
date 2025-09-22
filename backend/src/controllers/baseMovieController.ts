@@ -33,7 +33,7 @@ export abstract class BaseMovieController {
   async getAll(req: Request, res: Response) {
     try {
       const page = Math.max(1, parseInt(req.query.page as string) || 1);
-      const limit = 3;
+      const limit = 20;
 
       const result = await this.movieService.getPaginatedMovies(page, limit);
       res.json({

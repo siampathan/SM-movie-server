@@ -6,7 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 export interface Movie {
   id: string;
   title: string;
-  rating: number;
+  rating: string;
+  genre: string;
   poster_link: string;
   trailer_link: string;
   movie_link: string;
@@ -37,7 +38,8 @@ export abstract class BaseMovieService {
           const movie: Movie = {
             id: data.id,
             title: data.title,
-            rating: parseFloat(data.rating),
+            rating: data.rating,
+            genre: data.genre,
             poster_link: data.poster_link,
             trailer_link: data.trailer_link,
             movie_link: data.movie_link,
@@ -58,6 +60,7 @@ export abstract class BaseMovieService {
         "id",
         "title",
         "rating",
+        "genre",
         "poster_link",
         "trailer_link",
         "movie_link",

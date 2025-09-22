@@ -1,0 +1,36 @@
+.navbar-wrap {
+    width: 100%;
+    height: 10vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 60px;
+    background-color: #201f317c;
+    z-index: 99999;
+}
+
+.navbar-left {
+    max-width: 120px;
+    height: 12vh;
+}
+
+.navbar-left img {
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-right {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.navbar-right a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+}

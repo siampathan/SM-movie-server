@@ -3,6 +3,12 @@ import EnglishMovieCount from "./englishMovieCount";
 import HindiMovieCount from "./hindiMovieCount";
 import OthersMovieCount from "./othersMovieCount";
 
+import {
+  StyledHomeWrap,
+  StyledContainer,
+  StyledContainerBox,
+} from "../assets/style/style";
+
 import { getEnglishMovieCount } from "../API/api";
 
 interface HomeProps {
@@ -20,14 +26,22 @@ const Home: React.FC<HomeProps> = ({ token }) => {
   console.log("Movie Count - ", EnglishCount);
 
   return (
-    <div className="home-wrap">
-      <div className="container">
-        <EnglishMovieCount movieType="English" count={EnglishCount} />
-        <BanglaMovieCount movieType="Bangla" count={BanglaCount} />
-        <HindiMovieCount movieType="Hindi" count={HindiCount} />
-        <OthersMovieCount movieType="Others" count={OthersCount} />
-      </div>
-    </div>
+    <StyledHomeWrap>
+      <StyledContainer>
+        <StyledContainerBox>
+          <EnglishMovieCount movieType="English" count={EnglishCount} />
+        </StyledContainerBox>
+        <StyledContainerBox>
+          <BanglaMovieCount movieType="Bangla" count={BanglaCount} />
+        </StyledContainerBox>
+        <StyledContainerBox>
+          <HindiMovieCount movieType="Hindi" count={HindiCount} />
+        </StyledContainerBox>
+        <StyledContainerBox>
+          <OthersMovieCount movieType="Others" count={OthersCount} />
+        </StyledContainerBox>
+      </StyledContainer>
+    </StyledHomeWrap>
   );
 };
 
