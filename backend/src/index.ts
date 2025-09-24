@@ -5,7 +5,7 @@ import movieRouter from "./routes/movieRoutes";
 import adminRouter from "./routes/adminRoutes";
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 
 app.use(cors());
 app.use(express.json());
@@ -18,6 +18,12 @@ app.get("/", (req, res) => {
  app.use("/api", movieRouter);
  app.use("/api", adminRouter);
 
-app.listen(PORT, () => {
-  console.log(`server runing at, ${PORT}`);
-});
+
+export default (req: any, res: any) => {
+  return app(req, res);
+};
+
+ //issue in vercel serverless function
+// app.listen(PORT, () => {
+//   console.log(`server runing at, ${PORT}`);
+// });
