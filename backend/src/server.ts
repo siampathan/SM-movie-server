@@ -18,10 +18,7 @@ app.get("/", (req, res) => {
  app.use("/api", movieRouter);
  app.use("/api", adminRouter);
 
-
-export default (req: any, res: any) => {
-  return app(req, res);
-};
+ export default app;
 
  //issue in vercel serverless function
 // app.listen(PORT, () => {
