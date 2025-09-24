@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import movieRouter from "./routes/movieRoutes";
-import adminRouter from "./routes/adminRoutes";
+import movieRouter from "./src/routes/movieRoutes";
+import adminRouter from "./src/routes/adminRoutes";
 
 const app = express();
 const PORT = 8000;
@@ -21,6 +21,6 @@ app.get("/", (req, res) => {
  export default app;
 
 
-app.listen(PORT, () => {
-  console.log(`server runing at, ${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(`server runing at, ${PORT}`);
+// });
