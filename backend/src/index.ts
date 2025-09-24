@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
  export default app;
 
- //issue in vercel serverless function
-// app.listen(PORT, () => {
-//   console.log(`server runing at, ${PORT}`);
-// });
+
+app.listen(PORT, () => {
+  console.log(`server runing at, ${PORT}`);
+});
