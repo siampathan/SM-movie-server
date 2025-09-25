@@ -5,7 +5,7 @@ import movieRouter from "./routes/movieRoutes";
 import adminRouter from "./routes/adminRoutes";
 
 const app = express();
-//const PORT = 8000;
+const PORT = 8000;
 
 app.use(cors());
 app.use(express.json());
@@ -18,9 +18,9 @@ app.get("/", (req, res) => {
  app.use("/api", movieRouter);
  app.use("/api", adminRouter);
 
- export default app;
+// export default app;
 
 
-// app.listen(PORT, () => {
-//   console.log(`server runing at, ${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(`server runing at, ${PORT}`);
+});

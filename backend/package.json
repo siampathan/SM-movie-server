@@ -8,14 +8,12 @@
     "build": "tsc",
     "start": "node -r tsconfig-paths/register dist/index.ts",
     "lint": "eslint . --ext .ts",
-    "test": "jest",
-    "vercel-build": "npm run build"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vercel/node": "^4.0.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
