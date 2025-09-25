@@ -1,11 +1,11 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import movieRouter from "./src/routes/movieRoutes";
-import adminRouter from "./src/routes/adminRoutes";
+import movieRouter from "./routes/movieRoutes";
+import adminRouter from "./routes/adminRoutes";
 
 const app = express();
-const PORT = 8000;
+//const PORT = 8000;
 
 app.use(cors());
 app.use(express.json());
