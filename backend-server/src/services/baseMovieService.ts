@@ -1,7 +1,8 @@
 import fs from "fs";
 import csv from "csv-parser";
 import { Parser } from "json2csv";
-import { v4 as uuidv4 } from "uuid";
+//import { v4 as uuidv4 } from "uuid";
+import crypto from "crypto";
 
 export interface Movie {
   id: string;
@@ -116,7 +117,7 @@ export abstract class BaseMovieService {
 
   async createMovie(movie: Omit<Movie, "id">): Promise<Movie> {
     await this.loadCache();
-    const newMovie = { ...movie, id: uuidv4() };
+    const newMovie = { ...movie, id: crypto.randomUUID()  };
     this.cache.set(newMovie.id, newMovie);
     await this.persistCache();
     return newMovie;

@@ -12,9 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //   app.get('/ping', (_req: Request, res: Response) => {
 //     return res.send('Ping - pong 🏓')
 //   })
-//   app.listen(port, () => {
-//     return console.log(`Server is listening on ${port}`)
-//   })
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 require("dotenv/config");

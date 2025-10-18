@@ -16,7 +16,8 @@ exports.BaseMovieService = void 0;
 const fs_1 = __importDefault(require("fs"));
 const csv_parser_1 = __importDefault(require("csv-parser"));
 const json2csv_1 = require("json2csv");
-const uuid_1 = require("uuid");
+//import { v4 as uuidv4 } from "uuid";
+const crypto_1 = __importDefault(require("crypto"));
 class BaseMovieService {
     constructor(csvFile) {
         this.csvFile = csvFile;
@@ -112,7 +113,7 @@ class BaseMovieService {
     createMovie(movie) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.loadCache();
-            const newMovie = Object.assign(Object.assign({}, movie), { id: (0, uuid_1.v4)() });
+            const newMovie = Object.assign(Object.assign({}, movie), { id: crypto_1.default.randomUUID() });
             this.cache.set(newMovie.id, newMovie);
             yield this.persistCache();
             return newMovie;
