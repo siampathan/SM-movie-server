@@ -1,23 +1,16 @@
-import express from 'express';
+import express, { Request, Response } from 'express'
 
-const app = express();
+  const app = express()
+  const port = process.env.PORT || 8080
 
+  app.get('/', (_req: Request, res: Response) => {
+    return res.send('Welcome Siam In express server on Vercel!!')
+  })
 
-app.use(express.json());
+  app.get('/ping', (_req: Request, res: Response) => {
+    return res.send('Ping - pong 🏓')
+  })
 
-let books = [
-  { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald' },
-  { id: 2, title: '1984', author: 'George Orwell' },
-];
-
-
-app.get("/", (req:any, res:any) => {
-    res.json({"message": "Hello Siam from Express server!"})
-})
-
-app.get('/api/books', (req:any, res: any) => {
-  res.json(books);
-});
-
-
-export default app;
+  app.listen(port, () => {
+    return console.log(`Server is listening on ${port}`)
+  })
