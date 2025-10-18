@@ -11,10 +11,6 @@
 //     return res.send('Ping - pong 🏓')
 //   })
 
-//   app.listen(port, () => {
-//     return console.log(`Server is listening on ${port}`)
-//   })
-
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
