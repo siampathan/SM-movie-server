@@ -4,14 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const movieController_1 = require("../controllers/movieController");
+const moviesController_1 = require("../controllers/moviesController");
 const adminMiddleware_1 = __importDefault(require("../middlewares/adminMiddleware"));
-const baseMovieController_1 = require("../controllers/baseMovieController");
 const router = express_1.default.Router();
-// Register routes for all movie types
-baseMovieController_1.BaseMovieController.registerRoutes(router, "/english-movies", new movieController_1.EnglishMovieController(), [adminMiddleware_1.default]);
-baseMovieController_1.BaseMovieController.registerRoutes(router, "/hindi-movies", new movieController_1.HindiMovieController(), [adminMiddleware_1.default]);
-baseMovieController_1.BaseMovieController.registerRoutes(router, "/bangla-movies", new movieController_1.BanglaMovieController(), [adminMiddleware_1.default]);
-baseMovieController_1.BaseMovieController.registerRoutes(router, "/other-movies", new movieController_1.OtherMovieController(), [adminMiddleware_1.default]);
+router.post('/', adminMiddleware_1.default, moviesController_1.createMovie);
+router.get('/', adminMiddleware_1.default, moviesController_1.getAllMovies);
+router.get("/english-movies", moviesController_1.getEnglishMovies);
+router.get("/hindi-movies", moviesController_1.getHindiMovies);
+router.get("/bangla-movies", moviesController_1.getBanglaMovies);
+router.get("/other-movies", moviesController_1.getOtherMovies);
+router.get('/:id', moviesController_1.getMovieById);
+router.put('/:id', adminMiddleware_1.default, moviesController_1.updateMovie);
+router.delete('/:id', adminMiddleware_1.default, moviesController_1.deleteMovie);
 exports.default = router;
 //# sourceMappingURL=movieRoutes.js.map
