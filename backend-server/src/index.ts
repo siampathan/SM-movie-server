@@ -14,21 +14,23 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
+import connectDB from './config/db';
 import movieRouter from "./routes/movieRoutes";
 import adminRouter from "./routes/adminRoutes";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+connectDB();
 
 app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.status(200).json({ messge: "Hello, Siam WelCome to ⚓ Server" });
+  res.status(200).json({ messge: "Hello, Siam WelCome to ⚓ Server 😊!!" });
 });
 
 // Routes
- app.use("/api", movieRouter);
+ app.use("/api/movies/", movieRouter);
  app.use("/api", adminRouter);
 
 

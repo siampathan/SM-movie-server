@@ -1,42 +1,29 @@
-import express from "express";
+import express from 'express';
 import {
-  EnglishMovieController,
-  HindiMovieController,
-  BanglaMovieController,
-  OtherMovieController,
-} from "../controllers/movieController";
-import adminAuth from "../middlewares/adminMiddleware";
-import { BaseMovieController } from "../controllers/baseMovieController";
+  createMovie,
+  getAllMovies,
+  getMovieById,
+  updateMovie,
+  deleteMovie,
+  getEnglishMovies,
+  getHindiMovies,
+  getBanglaMovies,
+  getOtherMovies,
+} from '../controllers/moviesController';
+import adminAuth from '../middlewares/adminMiddleware';
 
 const router = express.Router();
 
-// Register routes for all movie types
-BaseMovieController.registerRoutes(
-  router,
-  "/english-movies",
-  new EnglishMovieController(),
-  [adminAuth]
-);
+router.post('/', adminAuth , createMovie);
+router.get('/', adminAuth , getAllMovies);
 
-BaseMovieController.registerRoutes(
-  router,
-  "/hindi-movies",
-  new HindiMovieController(),
-  [adminAuth]
-);
+router.get("/english-movies", getEnglishMovies);
+router.get("/hindi-movies", getHindiMovies);
+router.get("/bangla-movies", getBanglaMovies);
+router.get("/other-movies", getOtherMovies);
 
-BaseMovieController.registerRoutes(
-  router,
-  "/bangla-movies",
-  new BanglaMovieController(),
-  [adminAuth]
-);
-
-BaseMovieController.registerRoutes(
-  router,
-  "/other-movies",
-  new OtherMovieController(),
-  [adminAuth]
-);
+router.get('/:id', getMovieById);
+router.put('/:id',adminAuth, updateMovie);
+router.delete('/:id',adminAuth, deleteMovie);
 
 export default router;
