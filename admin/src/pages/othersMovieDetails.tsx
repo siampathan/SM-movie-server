@@ -1,7 +1,7 @@
 import MovieDetails from "../components/movieDetails";
 
 const OtherMovieDetails: React.FC = () => {
-  return <MovieDetails movieType="Other" redirectPath="other-movies" />;
+  return <MovieDetails movieType="Other" />;
 };
 
 export default OtherMovieDetails;

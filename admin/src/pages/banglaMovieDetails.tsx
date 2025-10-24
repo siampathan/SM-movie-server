@@ -1,7 +1,7 @@
 import MovieDetails from "../components/movieDetails";
 
 const BanglaMovieDetails: React.FC = () => {
-  return <MovieDetails movieType="Bangla" redirectPath="bangla-movies" />;
+  return <MovieDetails movieType="Bangla" />;
 };
 
 export default BanglaMovieDetails;
