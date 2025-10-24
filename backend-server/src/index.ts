@@ -22,12 +22,14 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 connectDB();
 
-app.use(cors({
-  origin: 'http://localhost:5173/',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-} ));
+app.options("*", cors());
+
+// app.use(cors({
+//   origin: 'http://localhost:5173/',
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true
+// } ));
 app.use(express.json());
 
 app.get("/", (req, res) => {
