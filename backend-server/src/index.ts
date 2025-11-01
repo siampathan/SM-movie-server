@@ -33,8 +33,8 @@ app.use(cors({
 //Vercel-ready Express + MongoDB + CORS setup
 
 app.use(express.json());
-//app.options("*", cors());
-app.use(cors());
+app.options("*", cors());
+//app.use(cors());
 
 app.get("/", (req, res) => {
   res.status(200).json({ messge: "Hello, Siam WelCome to ⚓ Server 😊!!" });

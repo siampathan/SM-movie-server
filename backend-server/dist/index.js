@@ -22,18 +22,25 @@ const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8000;
 (0, db_1.default)();
 app.use((0, cors_1.default)({
-    origin: 'http://localhost:5173/',
+    origin: "https://sm-movie-admin.vercel.app",
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
+//Vercel-ready Express + MongoDB + CORS setup
 app.use(express_1.default.json());
+app.options("*", (0, cors_1.default)());
+//app.use(cors());
 app.get("/", (req, res) => {
     res.status(200).json({ messge: "Hello, Siam WelCome to ⚓ Server 😊!!" });
 });
 // Routes
 app.use("/api/movies/", movieRoutes_1.default);
 app.use("/api", adminRoutes_1.default);
+app.use((err, req, res, next) => {
+    console.error("Error:", err);
+    res.status(500).json({ error: err.message });
+});
 app.listen(PORT, () => {
     console.log(`server runing at, ${PORT}`);
 });
