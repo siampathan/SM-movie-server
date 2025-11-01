@@ -163,7 +163,7 @@ exports.updateMovie = updateMovie;
 // Delete a movie by ID
 const deleteMovie = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const deletedMovie = yield moviesModel_1.default.findByIdAndDelete(req.params._id);
+        const deletedMovie = yield moviesModel_1.default.findByIdAndDelete(req.params.id);
         if (!deletedMovie) {
             return res.status(404).json({ message: "Movie not found" });
         }

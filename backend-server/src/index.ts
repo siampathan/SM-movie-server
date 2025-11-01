@@ -31,8 +31,6 @@ app.use(cors({
 
 //https://sm-movie-admin.vercel.app
 
-//Vercel-ready Express + MongoDB + CORS setup
-
 app.use(express.json());
 //app.options("/*", cors());
 
@@ -42,7 +40,7 @@ app.get("/", (req, res) => {
 });
 
 // Routes
- app.use("/api/movies/", movieRouter);
+ app.use("/api/movies", movieRouter);
  app.use("/api", adminRouter);
 
  app.use((err:any, req:any, res:any, next:any) => {

@@ -28,14 +28,13 @@ app.use((0, cors_1.default)({
     credentials: true
 }));
 //https://sm-movie-admin.vercel.app
-//Vercel-ready Express + MongoDB + CORS setup
 app.use(express_1.default.json());
 //app.options("/*", cors());
 app.get("/", (req, res) => {
     res.status(200).json({ messge: "Hello, Siam WelCome to ⚓ Server 😊!!" });
 });
 // Routes
-app.use("/api/movies/", movieRoutes_1.default);
+app.use("/api/movies", movieRoutes_1.default);
 app.use("/api", adminRoutes_1.default);
 app.use((err, req, res, next) => {
     console.error("Error:", err);

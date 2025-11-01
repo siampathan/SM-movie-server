@@ -26,7 +26,7 @@ const Login: React.FC<LoginProps> = ({ setToken }) => {
       });
 
       if (response.data.success) setToken(response.data.token);
-      else console.log(response.data.message);
+      //else console.log(response.data.message);
 
       setEmail("");
       setPassword("");
