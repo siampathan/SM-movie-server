@@ -27,10 +27,10 @@ app.use((0, cors_1.default)({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
+//https://sm-movie-admin.vercel.app
 //Vercel-ready Express + MongoDB + CORS setup
 app.use(express_1.default.json());
-app.options("*", (0, cors_1.default)());
-//app.use(cors());
+//app.options("/*", cors());
 app.get("/", (req, res) => {
     res.status(200).json({ messge: "Hello, Siam WelCome to ⚓ Server 😊!!" });
 });
