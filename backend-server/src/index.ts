@@ -18,7 +18,7 @@ app.use(cors({
   credentials: true
 } ));
 
-app.options('*', cors());
+//app.options('*', cors());
 
 // const allowedOrigins = [
 //   "https://sm-movie-admin.vercel.app",

@@ -19,7 +19,7 @@ app.use((0, cors_1.default)({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
-app.options('*', (0, cors_1.default)());
+//app.options('*', cors());
 // const allowedOrigins = [
 //   "https://sm-movie-admin.vercel.app",
 //   "http://localhost:5173/"
