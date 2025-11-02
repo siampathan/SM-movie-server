@@ -9,7 +9,7 @@ import Arrow from "../../assets/arrow.png";
 import PlayBtn from "../../assets/play.png";
 
 interface MovieTypes {
-  id: string;
+  _id: string;
   title: string;
   poster_link: string;
   rating: string;
@@ -46,9 +46,11 @@ const MovieList = ({
 
     try {
       const url = isSearching
-        ? `${backendUrl}/api/${movieType}-movies/all`
-        : `${backendUrl}/api/${movieType}-movies?page=${page}`;
+        ? `${backendUrl}/api/movies/${movieType}-movies/`
+        : `${backendUrl}/api/movies/${movieType}-movies?page=${page}`;
       const response = await axios.get(url);
+      console.log(response);
+      
 
       if (isSearching) {
         const allMovies = response.data.data || response.data;
@@ -70,6 +72,7 @@ const MovieList = ({
 
   useEffect(() => {
     fetchMovies();
+    
   }, [fetchMovies]);
 
   useEffect(() => {
@@ -101,7 +104,7 @@ const MovieList = ({
           </MovieType>
           <div className="card-list">
             {filteredMovies.map((movie) => (
-              <div className="card-container" key={movie.id}>
+              <div className="card-container" key={movie._id}>
                 <div className="buttons">
                   <StyledNavLink
                     to={movie.movie_link}
@@ -113,14 +116,14 @@ const MovieList = ({
                   </StyledNavLink>
 
                   <StyledNavLink
-                    to={`/${addMoviePath}/${movieType}/${movie.id}`}
+                    to={`/${addMoviePath}/${movieType}/${movie._id}`}
                     className="play-button"
                   >
                     <img src={PlayBtn} alt="" />
                   </StyledNavLink>
                 </div>
 
-                <StyledNavLink to={`/${addMoviePath}/${movieType}/${movie.id}`}>
+                <StyledNavLink to={`/${addMoviePath}/${movieType}/${movie._id}`}>
                   <img src={movie.poster_link} alt="background" />
                   <div className="content-sec">
                     <h2>{movie.title}</h2>

@@ -10,8 +10,8 @@ export const useMovies = (moviesType: string) => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const res = await axios.get(`${backendUrl}/api/${moviesType}?limit=5`);
-        setMovies(res.data.data);
+        const res = await axios.get(`${backendUrl}/api/movies/${moviesType}?limit=5`);
+        setMovies(res.data.movies);
       } catch (err: any) {
         setError(err);
       } finally {

@@ -4,20 +4,37 @@ import Arrow from '../../assets/arrow.png';
 import PlayBtn from '../../assets/play.png';
 
 import './homeList.css';
+import axios from "axios";
+import { useEffect } from "react";
 
 
 interface Props {
   moviesType: string;
   pathRoute: string;
+  url:string;
   
 
 }
+
+const url = "http://localhost:8000/api/movies/english-movies";
 
 const HomeList: React.FC<Props> = ({moviesType, pathRoute}) => {
      const { movies, loading, error } = useMovies(moviesType);
 
   if (loading) return <p>Loading movies...</p>;
   if (error) return <p>Error fetching movies: {error.message}</p>;
+
+  console.log("This is Home Page !!");
+  
+  const testfetch = async () => {
+    const response = axios.get(`${url}`);
+    console.log(response);
+  }
+
+  useEffect(() => {
+    testfetch();
+  },[]);
+  
 
   return (
     <>

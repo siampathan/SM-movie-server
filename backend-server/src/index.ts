@@ -9,6 +9,8 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 connectDB();
 
+//app.use(cors());
+
 app.use(cors({
   origin: "https://sm-movie-admin.vercel.app",
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -16,10 +18,14 @@ app.use(cors({
   credentials: true
 } ));
 
-//https://sm-movie-admin.vercel.app
+app.options('*', cors());
+
+// const allowedOrigins = [
+//   "https://sm-movie-admin.vercel.app",
+//   "http://localhost:5173/"
+// ];
 
 app.use(express.json());
-//app.options("/*", cors());
 
 
 app.get("/", (req, res) => {

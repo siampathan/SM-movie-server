@@ -12,15 +12,19 @@ const adminRoutes_1 = __importDefault(require("./routes/adminRoutes"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8000;
 (0, db_1.default)();
+//app.use(cors());
 app.use((0, cors_1.default)({
     origin: "https://sm-movie-admin.vercel.app",
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
-//https://sm-movie-admin.vercel.app
+app.options('*', (0, cors_1.default)());
+// const allowedOrigins = [
+//   "https://sm-movie-admin.vercel.app",
+//   "http://localhost:5173/"
+// ];
 app.use(express_1.default.json());
-//app.options("/*", cors());
 app.get("/", (req, res) => {
     res.status(200).json({ messge: "Hello, Siam WelCome to ⚓ Server 😊!!" });
 });
