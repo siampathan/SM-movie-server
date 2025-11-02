@@ -14,13 +14,13 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import connectDB from './config/db';
-import movieRouter from "./routes/movieRoutes";
-import adminRouter from "./routes/adminRoutes";
+//import connectDB from './config/db';
+// import movieRouter from "./routes/movieRoutes";
+// import adminRouter from "./routes/adminRoutes";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-connectDB();
+//connectDB();
 
 app.use(cors({
   origin: "https://sm-movie-admin.vercel.app",
@@ -40,8 +40,8 @@ app.get("/", (req, res) => {
 });
 
 // Routes
- app.use("/api/movies", movieRouter);
- app.use("/api", adminRouter);
+ //app.use("/api/movies", movieRouter);
+ //app.use("/api", adminRouter);
 
  app.use((err:any, req:any, res:any, next:any) => {
   console.error("Error:", err);
