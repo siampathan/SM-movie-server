@@ -29,16 +29,21 @@ app.use(helmet({
 // CORS setup
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
+    console.log("Incoming origin:", origin); // For debugging
+    if (!origin) {
+      // Allow requests without an origin (like server-to-server or Postman)
+      return callback(null, true);
+    }
     if (allowedOrigins.includes(origin)) {
-      callback(null, true);
+      return callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      console.warn(`Blocked by CORS: ${origin}`);
+      return callback(new Error(`CORS error: ${origin} not allowed`));
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
 }));
 
 
