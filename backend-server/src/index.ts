@@ -1,5 +1,6 @@
-import express from "express";
+import express,{ Request, Response, NextFunction } from "express";
 import cors from "cors";
+import helmet from "helmet";
 import "dotenv/config";
 import connectDB from './config/db';
 import movieRouter from "./routes/movieRoutes";
@@ -9,34 +10,54 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 connectDB();
 
-//app.use(cors());
+// app.use(cors({
+//   origin: "https://sm-movie-admin.vercel.app",
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true
+// } ));
 
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+? process.env.ALLOWED_ORIGINS.split(",")
+: [];
+
+app.use(helmet({
+  contentSecurityPolicy: false, // disable CSP if it breaks inline scripts
+   crossOriginResourcePolicy: { policy: "cross-origin" },
+}));
+
+// CORS setup
 app.use(cors({
-  origin: "https://sm-movie-admin.vercel.app",
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
-} ));
+}));
+
 
 app.options(/.*/, cors());
-
-// const allowedOrigins = [
-//   "https://sm-movie-admin.vercel.app",
-//   "http://localhost:5173/"
-// ];
-
 app.use(express.json());
 
 
 app.get("/", (req, res) => {
-  res.status(200).json({ messge: "Hello, Siam WelCome to ⚓ Server 😊!!" });
+  res.status(200).json({ message: "Hello, Siam WelCome to ⚓ Server 😊!!" });
 });
 
 // Routes
  app.use("/api/movies", movieRouter);
  app.use("/api", adminRouter);
+ app.use((req, res, next) => {
+  res.status(404).json({ error: "Route not found" });
+});
 
- app.use((err:any, req:any, res:any, next:any) => {
+ app.use((err:Error, req:Request, res:Response, next:NextFunction) => {
   console.error("Error:", err);
   res.status(500).json({ error: err.message });
 });

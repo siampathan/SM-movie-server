@@ -15,23 +15,30 @@ const Login: React.FC<LoginProps> = ({ setToken }) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+
     try {
-      e.preventDefault();
       const response = await axios.post(backendUrl + "/api/admin", {
         email,
         password,
       });
 
       if (response.data.success) setToken(response.data.token);
-      else console.log(response.data.message);
+      else {
+        console.log(response.data.message);
+        setError(response.data.message || "Login failed");
+      } 
 
       setEmail("");
       setPassword("");
     } catch (err: any) {
       console.log(err.message);
+      setError(err.response?.data?.message || err.message || "Server error");
     }
   };
 
@@ -45,7 +52,7 @@ const Login: React.FC<LoginProps> = ({ setToken }) => {
           <input
             type="email"
             value={email}
-            onChange={(e: any) => setEmail(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             placeholder="your@email.com"
             required
           />
@@ -56,11 +63,13 @@ const Login: React.FC<LoginProps> = ({ setToken }) => {
           <input
             type="password"
             value={password}
-            onChange={(e: any) => setPassword(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             placeholder="Enter your Password"
             required
           />
         </Field>
+
+         {error && <p style={{ color: "red" }}>{error}</p>}
 
         <Btn className="btn">Login</Btn>
       </form>
