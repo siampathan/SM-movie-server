@@ -10,23 +10,17 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 connectDB();
 
-// app.use(cors({
-//   origin: "https://sm-movie-admin.vercel.app",
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-//   credentials: true
-// } ));
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS
 ? process.env.ALLOWED_ORIGINS.split(",")
 : [];
 
 app.use(helmet({
-  contentSecurityPolicy: false, // disable CSP if it breaks inline scripts
+  contentSecurityPolicy: false, 
    crossOriginResourcePolicy: { policy: "cross-origin" },
 }));
 
-// CORS setup
+//CORS setup
 app.use(cors({
   origin: function (origin, callback) {
     console.log("Incoming origin:", origin); // For debugging
@@ -45,6 +39,8 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
+
+//app.use(cors());
 
 
 app.options(/.*/, cors());

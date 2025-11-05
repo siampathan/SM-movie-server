@@ -13,12 +13,6 @@ const adminRoutes_1 = __importDefault(require("./routes/adminRoutes"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 8000;
 (0, db_1.default)();
-// app.use(cors({
-//   origin: "https://sm-movie-admin.vercel.app",
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-//   credentials: true
-// } ));
 const allowedOrigins = process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(",")
     : [];
@@ -26,22 +20,27 @@ app.use((0, helmet_1.default)({
     contentSecurityPolicy: false, // disable CSP if it breaks inline scripts
     crossOriginResourcePolicy: { policy: "cross-origin" },
 }));
-// CORS setup
+//CORS setup
 app.use((0, cors_1.default)({
     origin: function (origin, callback) {
-        if (!origin)
+        console.log("Incoming origin:", origin); // For debugging
+        if (!origin) {
+            // Allow requests without an origin (like server-to-server or Postman)
             return callback(null, true);
+        }
         if (allowedOrigins.includes(origin)) {
-            callback(null, true);
+            return callback(null, true);
         }
         else {
-            callback(new Error("Not allowed by CORS"));
+            console.warn(`Blocked by CORS: ${origin}`);
+            return callback(new Error(`CORS error: ${origin} not allowed`));
         }
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
+    credentials: true,
 }));
+//app.use(cors());
 app.options(/.*/, (0, cors_1.default)());
 app.use(express_1.default.json());
 app.get("/", (req, res) => {
